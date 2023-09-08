@@ -1,9 +1,9 @@
 import css from './ContactForm.module.css';
 import { FcPhoneAndroid } from 'react-icons/fc';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts } from 'redux/selectors';
+import { selectContacts } from 'redux/contacts/selectors';
 import toast from 'react-hot-toast';
-import { addContact } from 'redux/apiContacts';
+import { addContact } from 'redux/contacts/operations';
 import { useState } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 

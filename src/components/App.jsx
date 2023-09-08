@@ -8,10 +8,10 @@ import {
   selectContactsCount,
   selectError,
   selectIsLoading,
-} from 'redux/selectors';
+} from 'redux/contacts/selectors';
 import { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
-import { fetchContacts } from 'redux/apiContacts';
+import { fetchContacts } from 'redux/contacts/operations';
 import { Audio } from 'react-loader-spinner';
 
 export const App = () => {
