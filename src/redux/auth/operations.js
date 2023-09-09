@@ -11,4 +11,12 @@ const clearAuthenticationHeader = token => {
   axios.defaults.headers.common.Authorization = '';
 };
 
-export const register = createAsyncThunk();
+export const register = createAsyncThunk(
+  'auth/register',
+  async (references, thunkApi) => {
+    try {
+      const values = await axios.post('/user/signup', references);
+      setAuthenticationHeader(values.data.token);
+    } catch (error) {}
+  }
+);
