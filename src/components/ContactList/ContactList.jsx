@@ -2,11 +2,11 @@ import { ContactListItem } from './ContactItemList/ContactListItem';
 import css from './ContactList.module.css';
 import { useSelector } from 'react-redux';
 import {
-  collectActuallContacts,
   selectContactsCount,
   selectError,
   selectIsLoading,
 } from 'redux/contacts/selectors';
+import { collectActuallContacts } from 'redux/filter/selectors';
 
 export const ContactList = () => {
   // const filter = useSelector(getFilter);

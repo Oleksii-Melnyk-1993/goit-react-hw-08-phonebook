@@ -13,15 +13,15 @@ import { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/contacts/operations';
 import { Audio } from 'react-loader-spinner';
+import { useAuthentication } from 'hooks';
+import { refreshPage } from 'redux/auth/operations';
 
 export const App = () => {
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
   const dispatch = useDispatch();
-  const totalCount = useSelector(selectContactsCount);
+  const { isRefresh } = useAuthentication();
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshPage());
   }, [dispatch]);
 
   return (
