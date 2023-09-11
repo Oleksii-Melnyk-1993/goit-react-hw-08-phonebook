@@ -24,8 +24,8 @@ export const RegisterForm = () => {
         Login
         <input type="text" name="name" />
       </label>{' '}
-      Email
       <label>
+        Email
         <input type="email" name="email" />
       </label>
       <label>
