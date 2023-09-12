@@ -7,15 +7,15 @@ const setAuthenticationHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
-const clearAuthenticationHeader = token => {
+const clearAuthenticationHeader = () => {
   axios.defaults.headers.common.Authorization = '';
 };
 
 export const register = createAsyncThunk(
   'auth/register',
-  async (references, thunkApi) => {
+  async (credentials, thunkApi) => {
     try {
-      const values = await axios.post('/user/signup', references);
+      const values = await axios.post('/users/signup', credentials);
       setAuthenticationHeader(values.data.token);
       return values.data;
     } catch (error) {
@@ -26,9 +26,9 @@ export const register = createAsyncThunk(
 
 export const login = createAsyncThunk(
   'auth/login',
-  async (references, thunkApi) => {
+  async (credentials, thunkApi) => {
     try {
-      const values = await axios.post('/user/login', references);
+      const values = await axios.post('/users/login', credentials);
       setAuthenticationHeader(values.data.token);
       return values.data;
     } catch (error) {
@@ -39,9 +39,8 @@ export const login = createAsyncThunk(
 
 export const logout = createAsyncThunk('auth/logout', async (_, thunkApi) => {
   try {
-    const values = await axios.post('/user/logout');
+    await axios.post('/users/logout');
     clearAuthenticationHeader();
-    return values.data;
   } catch (error) {
     return thunkApi.rejectWithValue(error.message);
   }

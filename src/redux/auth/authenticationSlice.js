@@ -4,13 +4,11 @@ import { login, logout, refreshPage, register } from './operations';
 const initialState = {
   user: { name: null, email: null },
   isLogIn: false,
-  authenticated: false,
   token: null,
-  error: null,
   isRefreshing: false,
 };
 
-export const authenticationSlice = createSlice({
+const authenticationSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
@@ -37,7 +35,7 @@ export const authenticationSlice = createSlice({
       state.isLogIn = true;
       state.isRefreshing = false;
     },
-    [refreshPage.pending](state) {
+    [refreshPage.rejected](state) {
       state.isRefreshing = false;
     },
   },
