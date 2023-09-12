@@ -3,3 +3,8 @@
   flex-direction: column;
   gap: 15px;
 }
+.empty-phonebook {
+  margin-top: 60px;
+  color: brown;
+  font-weight: 600;
+}

@@ -27,7 +27,9 @@ export const ContactList = () => {
   return (
     <ul className={css.list}>
       {!count && !isLoading && !error ? (
-        <p>Phonebook empty 🙄 Add first contact to list</p>
+        <p className={css.empty_phonebook}>
+          Phonebook empty 🙄 Add first contact to list
+        </p>
       ) : (
         filteredContactList.map(contact => (
           <ContactListItem key={contact.id} contact={contact} />
