@@ -9,6 +9,7 @@ import { RestrictedRoute } from './RestrictedRoute';
 import Login from 'pages/Login/Login';
 import { PrivateRoute } from './PrivateRoute';
 import Contacts from 'pages/Contacts/Contacts';
+import Register from 'pages/Register/Register';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,12 @@ export const App = () => {
         <Route index element={<Home />} />
         <Route
           path="/register"
+          element={
+            <RestrictedRoute redirectTo="/contacts" component={<Register />} />
+          }
+        />
+        <Route
+          path="/login"
           element={
             <RestrictedRoute redirectTo="/contacts" component={<Login />} />
           }
