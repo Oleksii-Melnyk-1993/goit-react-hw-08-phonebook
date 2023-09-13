@@ -13,7 +13,7 @@ import {
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/contacts/operations';
 
-export default function Contacts() {
+export default function App() {
   const dispatch = useDispatch();
   const totalCount = useSelector(selectContactsCount);
   const isLoading = useSelector(selectIsLoading);

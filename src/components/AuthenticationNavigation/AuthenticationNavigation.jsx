@@ -8,7 +8,7 @@ export const AuthenticationNavigation = () => {
         Register
       </NavLink>
       <NavLink to="/login" className={css.nav_link}>
-        Register
+        Log in
       </NavLink>
     </div>
   );
