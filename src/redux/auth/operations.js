@@ -13,53 +13,55 @@ const clearAuthenticationHeader = () => {
 
 export const register = createAsyncThunk(
   'auth/register',
-  async (credentials, thunkApi) => {
+  async (credentials, thunkAPI) => {
     try {
-      const values = await axios.post('/users/signup', credentials);
-      setAuthenticationHeader(values.data.token);
-      return values.data;
+      const res = await axios.post('/users/signup', credentials);
+      console.log('Setting up token: ', res.data.token);
+      setAuthenticationHeader(res.data.token);
+      console.log('Done!');
+      return res.data;
     } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-export const login = createAsyncThunk(
+export const logIn = createAsyncThunk(
   'auth/login',
-  async (credentials, thunkApi) => {
+  async (credentials, thunkAPI) => {
     try {
-      const values = await axios.post('/users/login', credentials);
-      setAuthenticationHeader(values.data.token);
-      return values.data;
+      const res = await axios.post('/users/login', credentials);
+      setAuthenticationHeader(res.data.token);
+      return res.data;
     } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-export const logout = createAsyncThunk('auth/logout', async (_, thunkApi) => {
+export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await axios.post('/users/logout');
     clearAuthenticationHeader();
   } catch (error) {
-    return thunkApi.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue(error.message);
   }
 });
 
 export const refreshPage = createAsyncThunk(
   'auth/refresh',
-  async (_, thunkApi) => {
-    const state = thunkApi.getState();
-    const persistToken = state.auth.token;
-    if (persistToken === null) {
-      return thunkApi.rejectWithValue('Please, login!');
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue('Please, login!');
     }
     try {
-      setAuthenticationHeader(persistToken);
-      const values = await axios.get('/users/current');
-      return values.data;
+      setAuthenticationHeader(persistedToken);
+      const res = await axios.get('/users/current');
+      return res.data;
     } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

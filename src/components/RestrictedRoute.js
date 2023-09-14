@@ -1,7 +1,23 @@
 import { useAuthentication } from 'hooks';
+
 import { Navigate } from 'react-router-dom';
 
-export const RestrictedRoute = ({ component: Component, redirectTo = '/' }) => {
+// import Register from 'pages/Register/Register';
+// import Login from 'pages/Login/Login';
+
+export const RestrictedRoute = ({
+  component: Component,
+  redirectTo = '/',
+  path = '/',
+}) => {
   const isLogIn = useAuthentication();
-  return isLogIn ? <Navigate to={redirectTo} replace /> : Component;
+
+  if (
+    (path === '/register' && !isLogIn.isLogIn) ||
+    (path === '/login' && !isLogIn.isLogIn)
+  ) {
+    return Component;
+  }
+
+  return isLogIn ? <Navigate to={redirectTo} /> : Component;
 };

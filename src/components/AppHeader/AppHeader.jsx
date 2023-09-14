@@ -4,7 +4,7 @@ import { UserMenu } from 'components/UserMenu/UserMenu';
 import { useAuthentication } from 'hooks';
 
 export const AppHeader = () => {
-  const { isLogIn } = useAuthentication;
+  const { isLogIn } = useAuthentication();
   return (
     <header
       style={{
