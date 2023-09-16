@@ -4,7 +4,7 @@ import { Filter } from 'components/Filter/Filter';
 import { Audio } from 'react-loader-spinner';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Toaster } from 'react-hot-toast';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   selectContactsCount,
   selectError,
@@ -14,19 +14,19 @@ import { useEffect } from 'react';
 import { fetchContacts } from 'redux/contacts/operations';
 
 export default function App() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const totalCount = useSelector(selectContactsCount);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 
   useEffect(() => {
-    fetchContacts();
-  });
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <div
       style={{
-        paddingTop: '60px',
+        paddingTop: '50px',
         paddingBottom: '60px',
         height: '100vh',
         display: 'flex',
